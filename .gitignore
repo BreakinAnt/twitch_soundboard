@@ -1,5 +1,5 @@
 node_modules/
 music/*
-.config.json
+.config
 
 !music/.gitkeep
