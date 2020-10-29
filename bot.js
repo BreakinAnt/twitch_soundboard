@@ -13,9 +13,6 @@ const opts = {
       reconnect: true,
       secure: true
   },
-  options: {
-    debug: true
-  },
   identity: {
     username: USERNAME,
     password: PASSWORD
