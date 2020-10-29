@@ -52,9 +52,9 @@ function onMessageHandler (target, context, msg, self) {
       case '!sb':
         let msg;
         if (commandParam){
-          userCmd.userTimer(context.username, commandParam, COOLDOWN) ? msg = null : msg = `@${context.username} é preciso esperar ${UserList.findUser(context.username).timer} segundos antes de mandar outro som.`;
+          msg = userCmd.userTimer(context.username, commandParam, COOLDOWN);
         } else {
-        msg = `@${context.username}, para o comando funcionar você precisa digitar "!sb + nome-do-comando". Ex: "!sb aiquelindo" (sem aspas).`;
+          msg = `@${context.username}, para o comando funcionar você precisa digitar "!sb + nome-do-comando". Ex: "!sb aiquelindo" (sem aspas).`;
         }
 
         if (msg) client.say(target, msg);

@@ -1,10 +1,10 @@
 const User = require('../model/user');
 const UserList = require('../model/userDao');
-const SoundPlayer = require('../sound');
+const SoundPlayer = require('./sound');
 
 function userTimer(username, sound, cooldown){
     if(!SoundPlayer.checkSound(sound) && sound !== 'timeout'){
-      return false;
+      return `${sound} não encontrado.`;
     }
 
     const fetchedUser = UserList.findUser(username);
@@ -25,11 +25,13 @@ function userTimer(username, sound, cooldown){
       if(fetchedUser.timer <= 0 ){
         UserList.removeUser(username);
         userPlaySound();
-        return true;
+        return null;
+      } else {
+        return `@${username} é preciso esperar ${fetchedUser.timer} ${fetchedUser.timer > 1 ? 'segundos' : 'segundo'} antes de mandar outro som.`;
       }
     } else {
       userPlaySound();
-      return true;
+      return null;
     }
 }
 
