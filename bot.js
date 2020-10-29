@@ -1,12 +1,12 @@
 const tmi = require('tmi.js');
-const User = require('./model/user');
-const UserList = require('./model/userDao');
-const SoundPlayer = require('./sound');
 
-const COOLDOWN = require('./config.json').cooldown;
+const userCmd = require('./util/commands');
+const UserList = require('./model/userDao');
+
+let COOLDOWN = require('./config.json').cooldown;
 const USERNAME = require('./config.json').username;
 const PASSWORD = require('./config.json').password;
-const CHANNELS = require('./config.json').channels;
+const CHANNEL = require('./config.json').channel;
 
 const opts = {
     connection: {
@@ -18,7 +18,7 @@ const opts = {
     password: PASSWORD
   },
   channels: [
-    ...CHANNELS
+    ...CHANNEL
   ],
 };
 
@@ -47,46 +47,55 @@ function onMessageHandler (target, context, msg, self) {
   const commandParam = commandChat[1];
   const commandTru = commandChat[0];
 
-  // If the command is known, let's execute it
-    switch(commandTru){
+  // USER
+    switch (commandTru){
       case '!sb':
-        userTimer(context.username, commandParam);
-        break;
-      case '!ping':
-        console.log(target)
-        client.say(target, "pong");
+        let msg;
+        if (commandParam){
+          userCmd.userTimer(context.username, commandParam, COOLDOWN) ? msg = null : msg = `@${context.username} é preciso esperar ${UserList.findUser(context.username).timer} segundos antes de mandar outro som.`;
+        } else {
+        msg = `@${context.username}, para o comando funcionar você precisa digitar "!sb + nome-do-comando". Ex: "!sb aiquelindo" (sem aspas).`;
+        }
+
+        if (msg) client.say(target, msg);
         break;
     }
-}
 
-// Functions
-function userTimer(username, sound){
-  if(!SoundPlayer.checkSound(sound)){
-    return false;
-  }
-
-  const doesUserExist = UserList.findUser(username);
-
-  const userPlaySound = () => {
-    const user = new User(username, COOLDOWN);
-    UserList.addUser(user);
-    SoundPlayer.playSound(sound);
-    user.startTimer();
-
-    console.log(`${user.name} has put ${sound}.mp3 to play!`)
-  }
-
-  if(doesUserExist){
-    if(doesUserExist.timer <= 0 ){
-      UserList.removeUser(username);
-      userPlaySound();
-      return true;
+  // ADMIN
+    if (context.username === CHANNEL){
+      switch (commandTru){
+              case `!admin:users`:  
+              UserList.printUserList();
+              break;
+            case `!admin:reset`:
+              if (commandParam){
+                UserList.cleanUserList;
+                console.log('- Cooldown has been reseted to everyone');
+              }
+              UserList.removeUser(commandParam.toLowerCase());
+              console.log(`- Cooldown has been reseted to ${commandParam}`);
+              break;
+            case `!admin:cooldown`:
+              if (Number(commandParam)){
+                COOLDOWN = commandParam;
+                UserList.cleanUserList;
+                console.log(`- Cooldown has been set to ${commandParam}`);
+              };
+              break;
+            case `!admin:timeout`:
+              if(Number(commandChat[2])){
+                UserList.removeUser(commandChat[1].toLowerCase());
+                userCmd.userTimer(commandChat[1].toLowerCase(), 'timeout', (commandChat[2] * 60));
+              } 
+              break;
+            case '!admin:help':
+              console.log(`- ADMIN OPTIONS:
+              !admin:users: PRINTS LIST OF USERS ON COOLDOWN
+              !admin:reset +(OPTIONAL = user): REMOVES EVERY USER FROM COOLDOWN LIST, REMOVES MEMBER FROM TIMEOUT IF SPECIFIED
+              !admin:cooldown + seconds: RECEIVES PARAMETER AS SECONDS AND CHANGES COOLDOWN TIMER
+              !admin:timeout + minutes + user: RECEIVES PARAMETER AS MINUTES AND TIMES OUT USER
+              !admin:helps: PRINTS THIS OPTIONS LIST`);
+              break;
+      }
     }
-  } else {
-    userPlaySound();
-    return true;
-  }
-
-  return false;
 }
-

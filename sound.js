@@ -10,7 +10,7 @@ function checkSound(audioName){
 
 function playSound(audioName){
     const filePath = path.join(__dirname, 'music', (audioName + '.mp3'));
-
+    
     if(fs.existsSync(filePath)){
         sound.play(filePath).then(res => {
         }).catch(err => {

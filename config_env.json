@@ -1,6 +1,6 @@
 {
-    "cooldown": 0,
+    "cooldown": 30,
     "password": "",
     "username": "",
-    "channels": [ "" ]
+    "channel": [ "" ]
 }

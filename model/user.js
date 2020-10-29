@@ -16,7 +16,7 @@ class User{
                 this.timer-=1;
             } else {
                 clearInterval(loop);
-                console.log(`${this.name} cooldown is over`)
+                console.log(`- ${this.name} cooldown is over`)
             }
         }
     }

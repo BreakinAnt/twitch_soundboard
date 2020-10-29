@@ -9,6 +9,15 @@ class UserDao{
         return userList;
     }
 
+    static printUserList(){
+        console.log('- Userlist: {');
+        userList.forEach((val) => {
+            if(val)
+            console.log(val);
+        })
+        console.log('} -');
+    }
+
     static findUser(userName){
         return userList.find(val => {
             const fetched = Object.values(val);
