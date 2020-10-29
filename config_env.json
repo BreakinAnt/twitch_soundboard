@@ -1,6 +1,7 @@
 {
     "cooldown": 30,
-    "password": "",
-    "username": "",
-    "channel": [ "" ]
+    "password": "authbot token",
+    "username": "bot name",
+    "channel": [ "channel name" ],
+    "debug": false
 }

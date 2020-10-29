@@ -12,7 +12,7 @@ function playSound(audioName){
     const filePath = path.join(__dirname, '..', 'music', (audioName + '.mp3'));
     
     sound.play(filePath).then(res => {
-        return true
+        return true;
     }).catch(err => {
         return false;
     })

@@ -1,17 +1,17 @@
-let userList = [];
+let _userList = [];
 
-class UserDao{
+class UserDao {
     static addUser(user){
-        userList.push(user);
+        _userList.push(user);
     }
 
     static getUserList(){
-        return userList;
+        return _userList;
     }
 
     static printUserList(){
-        console.log('- Userlist: {');
-        userList.forEach((val) => {
+        console.log('- _Userlist: {');
+        _userList.forEach((val) => {
             if(val)
             console.log(val);
         })
@@ -19,27 +19,29 @@ class UserDao{
     }
 
     static findUser(userName){
-        return userList.find(val => {
-            const fetched = Object.values(val);
-            if(userName == fetched[0]){
-                return fetched;
+        return _userList.find(val => {
+                const fetched = Object.values(val);
+                if(userName == fetched[0]){
+                    return val;
+                }
             }
-        });
+        );
     }
 
     static removeUser(userName){
-        const fetchedIndex = userList.findIndex(val => {
-            const fetched = Object.values(val);
-            if(userName == fetched[0]){
-                return fetched;
+        const fetchedIndex = _userList.findIndex(val => {
+                const fetched = Object.values(val);
+                if(userName == fetched[0]){
+                    return fetched;
+                }
             }
-        });
+        );
 
-        userList.splice(fetchedIndex, 1);
+        _userList.splice(fetchedIndex, 1);
     }
 
     static cleanUserList(){
-        userList = [];
+        _userList = [];
     }
 }
 
