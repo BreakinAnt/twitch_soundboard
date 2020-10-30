@@ -8,7 +8,7 @@
 <p>Open <code>config_env.json</code> and add/edit the following attributes:</p>
 
 - <b>cooldown:</b> Put in numbers how many seconds you want to cooldown the user after sending a sound request.
-- <b>password:</b> Put your authbot token here.
+- <b>password:</b> Put your authbot token here. (you can get it here: https://twitchapps.com/tmi/)
 - <b>username:</b> Put your bots name here.
 - <b>channel:</b> Put your channel here.
 - <b>debug:</b> <code>true</code> or <code>false</code>. For debug purposes. <b>Turning this on will make the !admin commands available to everyone.</b>
