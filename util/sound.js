@@ -1,5 +1,5 @@
-const sound = require('sound-play')
-const path = require('path')
+const sound = require('sound-play');
+const path = require('path');
 const fs = require('fs');
 
 function checkSound(audioName){

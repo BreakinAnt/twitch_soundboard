@@ -1,5 +1,7 @@
 const User = require('../model/user');
 const UserList = require('../model/userDao');
+const Game = require('../model/game');
+const GameList = require('../model/gameList');
 const SoundPlayer = require('./sound');
 
 function playSong(username, sound, cooldown){
@@ -41,6 +43,39 @@ function playSong(username, sound, cooldown){
   }
 }
 
+function addGame(game, username){
+  if(!game){
+    return msg = `Comando: !recomendo "nome do jogo" - "console do jogo"`
+  }
+
+  let fetchedGameString = "";
+  let fetchedGameArray;
+  
+  game.forEach((val, index) => {
+    if (index > 0){
+      fetchedGameString += val + ' ';
+    }
+  });
+
+  fetchedGameArray = fetchedGameString.split('-');
+
+  const fetchedGame = fetchedGameArray[0];
+  const fetchedPlatform = fetchedGameArray[1];
+
+  if (!fetchedGame){
+    return msg = `@${username}, você esquece de colocar o nome do jogo!`;
+  } else if(!fetchedPlatform){
+    return msg = `@${username}, você precisa colocar o console do jogo também!`;
+  }
+  
+  const newGame = new Game(fetchedGame, fetchedPlatform, username);
+  GameList.addGame(newGame);
+  GameList.saveList();
+
+  return msg = `Valeu pela recomendação @${username}!`;
+}
+
+exports.addGame = addGame;
 exports.playSong = playSong;
   
   

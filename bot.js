@@ -51,17 +51,18 @@ function onMessageHandler(target, context, msg, self){
   const commandParam = commandFull[1];
   const commandFirst = commandFull[0];
 
+  let newMsg;
+
   // USER
   switch (commandFirst) {
     case '!sb':
-      let msg;
-      if (commandParam) {
-        msg = userCmd.playSong(context.username, commandParam, cooldown);
-      } else {
-        msg = `@${context.username}, para o comando funcionar você precisa digitar "!sb + nome-do-comando". Ex: "!sb aiquelindo" (sem aspas).`;
-      }
-
-      if (msg) client.say(target, msg);
+      newMsg = userCmd.playSong(context.username, commandParam, cooldown);;
+      if (newMsg) client.say(target, newMsg);
+      break;
+    
+    case '!recomendo':
+      newMsg = userCmd.addGame(commandParam ? commandFull : null, context.username);
+      if (newMsg) client.say(target, newMsg);
       break;
   }
 
