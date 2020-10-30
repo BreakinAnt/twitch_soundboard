@@ -11,7 +11,7 @@
 - <b>password:</b> Put your outhbot token here.
 - <b>username:</b> Put your bots name here.
 - <b>channel:</b> Put your channel here.
-- <b>debug:</b> "true" or "false". For debug purposes. <b>Turning this on will make the !admin commands available to everyone.</b>
+- <b>debug:</b> <code>true</code> or <code>false</code>. For debug purposes. <b>Turning this on will make the !admin commands available to everyone.</b>
 
 <p>After configuring, rename it to <code>config.json</code>, taking out the <code>_env.json</code> part.</p>
 
