@@ -5,7 +5,7 @@
 <h3>- How to use:</h3>
 <p>Install NodeJS on your machine</p>
 
-<p>Got to <code>config_env.json</code> and add/edit the following attributes:</p>
+<p>Open <code>config_env.json</code> and add/edit the following attributes:</p>
 
 - <b>cooldown:</b> Put in numbers how many seconds you want to cooldown the user after sending a sound request.
 - <b>password:</b> Put your outhbot token here.
