@@ -66,7 +66,7 @@ function onMessageHandler(target, context, msg, self){
   }
 
   // ADMIN
-  if (context.username === _CHANNEL || _DEBUG){
+  if (context.username.localeCompare(_CHANNEL) === 0 || _DEBUG){
     switch (commandFirst) {
       case `!admin:users`:  
         UserList.printUserList();
