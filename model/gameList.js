@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const date = new Date().getTime();
 
-const filePath = path.join(__dirname, '..', 'games_list.txt');
+const filePath = path.join(__dirname, '..', `games_list${date}.txt`);
 let gameList = [];
 
 class GameList {
