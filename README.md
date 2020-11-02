@@ -1,5 +1,5 @@
-# twitch_soundboard
-<p>Makes chat able to select and play a list of sounds on stream made by the Streamer.</p>
+# twitch_soundboard_xand
+<p>Version made specifically for use to IncrivelXand's Twitch stream.</p>
 
 ---
 <h3>- How to use:</h3>
