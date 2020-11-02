@@ -5,7 +5,7 @@
 <h3>- How to use:</h3>
 <p>Install NodeJS on your machine</p>
 
-<p>Open <code>config_env.json</code> and add/edit the following attributes:</p>
+<p>Open <code>config.json.example</code> and add/edit the following attributes:</p>
 
 - <b>cooldown:</b> Put in numbers how many seconds you want to cooldown the user after sending a sound request.
 - <b>password:</b> Put your authbot token here. (you can get it here: https://twitchapps.com/tmi/)
@@ -13,7 +13,7 @@
 - <b>channel:</b> Put your channel here.
 - <b>debug:</b> <code>true</code> or <code>false</code>. For debug purposes. <b>Turning this on will make the !admin commands available to everyone.</b>
 
-<p>After configuring, rename it to <code>config.json</code>, taking out the <code>_env.json</code> part.</p>
+<p>After configuring, rename it to <code>config.json</code>, taking out the <code>.example</code> part.</p>
 
 Now run <code>npm install</code> and <code>npm start</code> to run the bot.
 
