@@ -54,12 +54,7 @@ function onMessageHandler(target, context, msg, self){
   // USER
   switch (commandFirst) {
     case '!sb':
-      let msg;
-      if (commandParam) {
-        msg = userCmd.playSong(context.username, commandParam, cooldown);
-      } else {
-        msg = `@${context.username}, para o comando funcionar você precisa digitar "!sb + nome-do-comando". Ex: "!sb aiquelindo" (sem aspas).`;
-      }
+      let msg = userCmd.playSong(context.username, commandParam, cooldown);
 
       if (msg) client.say(target, msg);
       break;
